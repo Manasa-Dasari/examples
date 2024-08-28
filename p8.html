@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Leaderboard</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 50px;
+        }
+        .min-max-container {
+            display: flex;
+            justify-content: space-around;
+            width: 400px;
+        }
+        .min-max-box {
+            width: 100px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 24px;
+            font-weight: bold;
+        }
+        #min-box {
+            background-color: red;
+        }
+        #max-box {
+            background-color: green;
+        }
+        #score-container {
+            margin: 20px 0;
+            text-align: center;
+        }
+        #score-box {
+            width: 150px;
+            height: 50px;
+            background-color: lightgray;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 36px;
+            margin-bottom: 10px;
+        }
+        .button-container {
+            display: grid;
+            grid-template-columns: repeat(3, 50px);
+            grid-gap: 10px;
+        }
+        .button {
+            width: 50px;
+            height: 50px;
+            font-size: 24px;
+            font-weight: bold;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .number-button {
+            background-color: orange;
+            color: white;
+        }
+        #zero-button {
+            background-color: purple;
+            color: white;
+            grid-column: span 3;
+        }
+        #enter-button {
+            width: 160px;
+            height: 40px;
+            background-color: black;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="min-max-container">
+        <div id="min-box" class="min-max-box">#</div>
+        <div id="max-box" class="min-max-box">#</div>
+    </div>
+
+    <div id="score-container">
+        <div id="score-box">#</div>
+        <div class="button-container">
+            <div class="button number-button" onclick="appendNumber(1)">1</div>
+            <div class="button number-button" onclick="appendNumber(2)">2</div>
+            <div class="button number-button" onclick="appendNumber(3)">3</div>
+            <div class="button number-button" onclick="appendNumber(4)">4</div>
+            <div class="button number-button" onclick="appendNumber(5)">5</div>
+            <div class="button number-button" onclick="appendNumber(6)">6</div>
+            <div class="button number-button" onclick="appendNumber(7)">7</div>
+            <div class="button number-button" onclick="appendNumber(8)">8</div>
+            <div class="button number-button" onclick="appendNumber(9)">9</div>
+            <div id="zero-button" class="button number-button" onclick="appendNumber(0)">0</div>
+        </div>
+        <button id="enter-button" onclick="submitScore()">ENTER</button>
+    </div>
+
+    <script>
+        let currentScore = '';
+
+        function appendNumber(number) {
+            currentScore += number;
+            document.getElementById('score-box').textContent = currentScore;
+        }
+
+        function submitScore() {
+            if (currentScore === '') return;
+
+            let score = parseInt(currentScore);
+            let minBox = document.getElementById('min-box');
+            let maxBox = document.getElementById('max-box');
+
+            let min = parseInt(minBox.textContent);
+            let max = parseInt(maxBox.textContent);
+
+            if (isNaN(min) || score < min) {
+                minBox.textContent = score;
+            }
+
+            if (isNaN(max) || score > max) {
+                maxBox.textContent = score;
+            }
+
+            currentScore = '';
+            document.getElementById('score-box').textContent = '#';
+        }
+    </script>
+
+</body>
+</html>

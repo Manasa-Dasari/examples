@@ -1,0 +1,46 @@
+<!--DOM 4-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>check your BMI</h1>
+    <p>Enter your weight and height below to check your BMI results</p>
+    <label>Put your weight in here(KG)</label><br>
+    <input id="weight" type="number" value=""><br>
+    <label>And your height in here(CM)</label><br>
+    <input id="height" type="number" value=""><br>
+    <button onclick="cal()">calculate BMI</button><br>
+    <h2 id="res">Your BMI is weight which means your type</h2>
+</body>
+</html>
+<script>
+    function cal()
+    {
+   let w1= Number(document.querySelector("#weight").value);
+   let h1= Number(document.querySelector("#height").value)/100;
+   let ans=w1/(h1*h1);
+   let bag="";
+    if(ans<=18.4)
+    {
+        bag=bag+"underweight";
+    }
+    else if(ans>=18.5 && ans<=24.9)
+    {
+        bag=bag+"Normal weight";
+    }
+    else if(res>=25 && res<=29.9)
+    {
+        bag=bag+"overweight";
+    }
+    else
+    {
+        bag=bag+"obse";
+    }
+    document.getElementById("res").innerText = `Your BMI is ${ans.toFixed(1)} which means your ${bag}`;
+   }
+
+</script>
